@@ -119,6 +119,10 @@ Alternatively, use the committed uv lockfile: `uv sync --extra dev --locked`, th
 `uv run --locked pytest -q`, `uv run --locked ruff check .`, and
 `uv run --locked ruff format --check .`. See `backend/README.md` for setup and WSGI commands.
 
+From repository root, run the backend container with `docker compose up --build -d --wait`.
+Check `/api/v1/health` at `http://127.0.0.1:8000` and stop it with `docker compose down`.
+This runs the Flask foundation through Gunicorn; PostgreSQL is not configured yet.
+
 Commands are **expected targets**, not evidence of existing configuration. If a command differs from the created project, update `AGENTS.md` accordingly. Never claim a test, migration or build passed without actually running it.
 
 **Before completion:** run relevant tests, formatting, lint, and builds where available. If you cannot run a check (e.g., no emulator/database), report the precise limitation.

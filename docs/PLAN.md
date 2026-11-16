@@ -463,7 +463,7 @@ Estimates are **rough solo-developer planning effort**, not promises. Implement 
 #### Phase 6 — Flask backend foundation
 - [x] Create `backend/` Python project with app factory, Blueprints, env-based config, Ruff and pytest.
 - [ ] Set up PostgreSQL, SQLAlchemy, Alembic/Flask-Migrate and reproducible migrations.
-- [ ] Set up Docker dev environment, DB health check and production WSGI entrypoint.
+- [~] Set up Docker dev environment, DB health check and production WSGI entrypoint.
 - [ ] Define OpenAPI schemas, canonical UUIDs, ownership, revisioning and error format.
 - [ ] Add API CI using an ephemeral PostgreSQL test DB.
 
@@ -472,10 +472,18 @@ Estimates are **rough solo-developer planning effort**, not promises. Implement 
 Foundation initialized by explicit request ahead of the Android milestones:
 `backend/` provides `/api/v1/health`, JSON HTTP errors, request IDs, a WSGI entrypoint,
 and tests. `docs/openapi.yaml` covers only the implemented health/error contract.
-PostgreSQL, migrations, Docker, full resource schemas, and API CI remain pending;
+PostgreSQL, migrations, full resource schemas, and API CI remain pending;
 the Phase 6 exit criteria have not been met. Android remains local-only.
 Verification: Python 3.12, 8 pytest tests passed; Ruff lint/format checks passed;
 Flask CLI route discovery and the WSGI health smoke check passed.
+
+Docker runtime is configured through `backend/Dockerfile` and root `compose.yaml`,
+using Gunicorn, a non-root user, locked production dependencies, and an HTTP
+liveness check. The combined Docker/DB checklist item remains pending until
+PostgreSQL and its readiness check are implemented.
+Verification: Compose config and image build passed; the container became healthy,
+host HTTP health returned 200, and the runtime user was confirmed non-root with
+pytest/Ruff absent. The existing 8 backend tests and Ruff checks also passed.
 
 #### Phase 7 — Auth and cloud data APIs
 - [ ] Implement register/login/refresh/logout/me and secure password/token handling.
