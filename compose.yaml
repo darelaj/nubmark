@@ -1,0 +1,11 @@
+name: nubmark
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "127.0.0.1:${NUBMARK_BACKEND_PORT:-8000}:8000"
+    environment:
+      NUBMARK_MAX_CONTENT_LENGTH: "${NUBMARK_MAX_CONTENT_LENGTH:-1048576}"
+    init: true

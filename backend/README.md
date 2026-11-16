@@ -4,6 +4,37 @@ Fondasi Flask untuk layanan cloud opsional Nubmark. Saat ini hanya tersedia
 health endpoint dan penanganan error JSON. Belum ada database, migrasi,
 autentikasi, API koleksi, atau sinkronisasi Android.
 
+## Menjalankan dengan Docker
+
+Jalankan Docker Desktop dalam mode Linux containers. Dari root repository:
+
+```powershell
+docker compose up --build -d --wait
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/health
+docker compose logs -f backend
+```
+
+Backend tersedia di `http://127.0.0.1:8000`, dengan respons health
+`{"status":"ok"}`. Container menggunakan Gunicorn, berjalan sebagai user non-root,
+dan memiliki health check HTTP. Dependency produksi dipasang dari `uv.lock`;
+virtual environment lokal, tes, dan file `.env` tidak masuk build context.
+PostgreSQL belum dijalankan karena fondasi backend belum memakai database.
+
+Untuk mengganti port, set `$env:NUBMARK_BACKEND_PORT = "8080"` sebelum menjalankan
+Compose. Batas request dapat diatur melalui `$env:NUBMARK_MAX_CONTENT_LENGTH`.
+Port hanya dipublikasikan pada loopback perangkat lokal.
+
+Setelah mengubah kode, jalankan kembali `docker compose up --build -d --wait`.
+Tidak ada bind mount atau auto-reload pada konfigurasi ini.
+Hentikan container dengan `docker compose down` dari root repository.
+
+Dockerfile juga dapat digunakan langsung dari root repository:
+
+```powershell
+docker build -t nubmark-backend ./backend
+docker run --rm -p 127.0.0.1:8000:8000 nubmark-backend
+```
+
 ## Pengembangan lokal
 
 Gunakan Python 3.12+ dan jalankan perintah dari folder `backend/`.
