@@ -1,114 +1,52 @@
 # Nubmark
 
-**Catat koleksimu. Ikuti progres rakitanmu. Simpan cerita setiap kit.**
+Nubmark adalah aplikasi Android untuk penghobi Gunpla dan model kit plastik yang ingin menyimpan koleksi dan cerita di balik setiap rakitan. Aplikasi ini berfokus pada perjalanan sebuah kit: dari masuk wishlist, dibeli, mulai dirakit, sampai selesai dan dipajang.
 
-Nubmark adalah aplikasi Android yang dikembangkan untuk membantu penghobi Gunpla dan model kit plastik mengelola koleksi serta mendokumentasikan proses merakit. Mulai dari kit yang ingin dibeli, tumpukan backlog, hingga hasil rakitan yang selesai, semuanya direncanakan dapat dicatat dalam satu aplikasi.
+Saat koleksi bertambah, mudah lupa kit mana yang sudah dibeli atau sampai tahap mana sebuah rakitan dikerjakan. Nubmark menjadi tempat untuk mencatatnya, bersama foto progres, waktu merakit, dan biaya yang dikeluarkan.
 
-Pendekatannya **local-first**: fitur utama ditargetkan dapat digunakan tanpa akun dan tanpa koneksi internet. Akun, pencadangan cloud, dan sinkronisasi antarperangkat akan hadir sebagai fitur opsional pada tahap berikutnya.
+> Nubmark masih dalam pengembangan. Ketersediaan fitur mengikuti progres implementasi di [roadmap](docs/PLAN.md).
 
-> **Status pengembangan:** tahap awal. Repository saat ini berisi kerangka aplikasi Android dengan Jetpack Compose dan dokumen perencanaan. Fitur produk di bawah merupakan target pengembangan, belum tersedia pada aplikasi saat ini.
+## Koleksi yang mudah diikuti
 
-## Mengapa Nubmark?
+Setiap kit memiliki informasi seperti nama, grade, skala, dan seri, serta status yang menjelaskan posisinya dalam koleksi:
 
-Koleksi yang bertambah sering membuat daftar kit, foto progres, waktu merakit, dan pengeluaran tersebar di banyak tempat. Nubmark dirancang untuk membantu menjawab:
-
-- Kit apa saja yang sudah dimiliki dan mana yang masih masuk wishlist?
-- Kit mana yang belum dirakit atau sedang dikerjakan?
-- Seberapa jauh progres setiap rakitan?
-- Berapa waktu dan biaya yang sudah dihabiskan untuk hobi ini?
-- Bagaimana menyimpan catatan serta foto dari awal hingga hasil akhir?
-
-## Fitur yang direncanakan
-
-### Milestone A — Local MVP
-
-| Fitur | Kegunaan |
+| Status | Arti |
 |---|---|
-| Manajemen koleksi | Menambah dan mengubah data kit, termasuk nama, grade, skala, seri, dan status. |
-| Pencarian dan filter | Menemukan kit berdasarkan nama, status, dan grade. |
-| Wishlist | Mencatat kit incaran dan memindahkannya ke koleksi setelah dibeli. |
-| Checklist build | Mencatat tahap perakitan dengan progres berdasarkan tahapan yang berlaku. |
-| Jurnal dan galeri foto | Menyimpan catatan bertanggal, foto progres, dan hasil akhir setiap kit. |
-| Timer dan riwayat sesi | Mencatat durasi sesi merakit pada setiap kit. |
-| Catatan pengeluaran | Mencatat biaya kit, cat, alat, dan kebutuhan lain dalam rupiah. |
-| Ringkasan koleksi | Menampilkan jumlah kit, status rakitan, dan statistik dasar dari data pengguna. |
-| Backup dan restore lokal | Mengekspor serta memulihkan data dan foto melalui arsip ZIP. |
+| Wishlist | Kit incaran yang belum dimiliki. |
+| Backlog | Kit yang sudah dimiliki dan menunggu untuk dirakit. |
+| Building | Kit yang sedang dikerjakan. |
+| Completed | Kit yang sudah selesai dirakit. |
 
-Seluruh fitur pada milestone ini ditargetkan berjalan secara lokal tanpa backend.
+Wishlist terpisah dari jumlah kit yang dimiliki. Setelah dibeli, kit berpindah ke koleksi sebagai backlog. Pencarian dan filter membantu menemukan kit berdasarkan nama, status, atau grade.
 
-### Milestone B — Cloud Beta
+## Catatan selama merakit
 
-- Akun opsional untuk menghubungkan data lokal dengan layanan cloud.
-- Pencadangan dan sinkronisasi koleksi, jurnal, sesi, pengeluaran, serta foto.
-- Pemulihan data pada perangkat lain.
-- Antrean perubahan saat offline dan penanganan konflik sinkronisasi.
+Nubmark menghubungkan setiap kit dengan checklist tahap perakitan, jurnal, dan galeri foto. Catatan tentang panel lining, decal yang belum dipasang, atau warna cat yang dipakai tetap tersimpan bersama kit yang bersangkutan.
 
-Data lokal tetap menjadi sumber utama aplikasi. Pengguna direncanakan tetap dapat melihat dan mengedit koleksi tanpa koneksi; unggah dan penggabungan data saat pertama kali masuk akun memerlukan persetujuan pengguna.
+Progres mengikuti checklist, dengan tahapan yang dapat disesuaikan atau dilewati sesuai kebutuhan kit. Keputusan untuk menyatakan rakitan selesai tetap ada pada pengguna. Rakitan juga dapat dibuka kembali tanpa kehilangan riwayatnya.
 
-### Pengembangan lanjutan
+Timer dan riwayat sesi membantu mencatat waktu pengerjaan. Foto memperlihatkan perubahan dari kondisi awal, proses perakitan, hingga hasil akhirnya.
 
-Statistik lanjutan, widget, ekspor CSV, tema gelap, inventaris cat dan alat, serta kartu build untuk dibagikan berada dalam rencana pengembangan setelah fitur inti.
+## Pengeluaran hobi
 
-## Alur koleksi
+Biaya pembelian kit, cat, alat, dan kebutuhan lain dicatat dalam rupiah. Pengeluaran dapat dikaitkan dengan kit tertentu atau disimpan sebagai biaya umum, sehingga biaya satu rakitan dan total belanja hobi dapat dilihat secara terpisah.
 
-```text
-Wishlist → Backlog → Building → Completed
-```
+## Ruang untuk koleksi pribadi
 
-- **Wishlist:** kit yang ingin dimiliki; tidak dihitung sebagai koleksi milik pengguna.
-- **Backlog:** kit yang sudah dimiliki dan belum mulai dirakit.
-- **Building:** kit yang sedang dikerjakan.
-- **Completed:** kit yang sudah dinyatakan selesai oleh pengguna.
+Nubmark memakai pendekatan local-first: data koleksi berada di perangkat, dengan penggunaan inti tanpa kewajiban akun atau koneksi internet. Backup lokal menjadi cara menyimpan salinan data beserta foto. Layanan cloud bersifat opsional untuk pencadangan dan sinkronisasi antarperangkat.
 
-Build dapat dikembalikan ke backlog atau dibuka kembali tanpa menghapus riwayatnya. Checklist yang mencapai 100% tidak otomatis mengubah status menjadi Completed; penyelesaian tetap menjadi keputusan pengguna.
+Tampilannya menggunakan latar putih, aksen biru, dan kartu yang menonjolkan foto kit. Lima bagian utama mengatur isi aplikasi:
 
-## Tampilan aplikasi
-
-Desain yang disetujui menggunakan tampilan terang dengan latar putih, aksen biru yang halus, Material 3, dan kartu koleksi yang menonjolkan foto kit.
-
-Lima tab utama yang direncanakan:
-
-| Tab | Isi utama |
+| Bagian | Isi |
 |---|---|
-| Home | Ringkasan koleksi, aktivitas terbaru, dan akses cepat. |
-| Collection | Daftar kit milik pengguna, pencarian, filter, dan detail kit. |
-| Wishlist | Daftar kit incaran dan aksi pindah ke koleksi. |
-| Builds | Rakitan aktif, checklist progres, timer, dan riwayat sesi. |
-| Profile | Statistik dasar, preferensi, backup/restore, dan pengaturan cloud pada tahap berikutnya. |
+| Home | Ringkasan koleksi dan kit yang baru diperbarui. |
+| Collection | Kit yang dimiliki beserta detailnya. |
+| Wishlist | Kit incaran yang ingin dibeli. |
+| Builds | Rakitan aktif, checklist, dan sesi merakit. |
+| Profile | Statistik, preferensi, dan pengelolaan backup. |
 
-Bahasa antarmuka ditargetkan menggunakan English sebagai default, dengan sumber terjemahan Bahasa Indonesia bila memungkinkan.
+## Dokumentasi proyek
 
-## Teknologi
-
-**Sudah digunakan dalam kerangka proyek:** Kotlin, Jetpack Compose, Material 3, Gradle Kotlin DSL, dan version catalog.
-
-**Direncanakan untuk Local MVP:** Room, DataStore, Coroutines/Flow, Hilt, Navigation Compose, Coil, dan Android Photo Picker, dengan pola MVVM serta aliran data satu arah.
-
-**Direncanakan untuk Cloud Beta:** Python dan Flask, PostgreSQL, SQLAlchemy, migrasi database, REST API berversi, penyimpanan foto privat, serta WorkManager untuk sinkronisasi Android. Backend belum tersedia dalam repository.
-
-Application ID: `id.my.chromazone.nubmark`.
-
-## Menjalankan proyek Android
-
-1. Buka folder repository ini di Android Studio; proyek Gradle berada di root.
-2. Siapkan Android SDK sesuai konfigurasi `app/build.gradle.kts` dan JDK sesuai `gradle/gradle-daemon-jvm.properties` (saat ini JDK 25).
-3. Jalankan Gradle Sync, lalu pilih modul `app` dan emulator atau perangkat Android.
-4. Jalankan aplikasi. Saat ini layar yang tersedia masih berupa tampilan awal `Hello Android!`.
-
-Perintah dari root repository pada PowerShell:
-
-```powershell
-.\gradlew.bat assembleDebug
-.\gradlew.bat testDebugUnitTest
-.\gradlew.bat lintDebug
-```
-
-Konfigurasi awal saat ini menggunakan `minSdk 24` dan `compileSdk`/`targetSdk 37`. Rencana produk menetapkan minimum API 26; perbedaan ini perlu diselaraskan saat implementasi fondasi. Angka konfigurasi tersebut bukan klaim kesiapan rilis.
-
-## Dokumentasi dan kontribusi
-
-- [Rencana produk dan roadmap](docs/PLAN.md): cakupan rilis, aturan data, alur pengguna, dan tahapan implementasi.
-- [Panduan desain](docs/DESIGN.md): arah visual, navigasi, komponen, dan spesifikasi layar.
-- [Aturan kontribusi](AGENTS.md): arsitektur, verifikasi, serta alur branch dan commit.
-
-Baca dokumen tersebut sebelum mengerjakan perubahan. Setiap fitur baru dan perubahan besar harus memakai branch tersendiri; perubahan minor boleh dikerjakan di `main`. Setiap task yang selesai dibuatkan commit terpisah setelah verifikasi, termasuk pembaruan dokumentasi yang terkait.
+- [PLAN.md](docs/PLAN.md): cakupan produk, aturan data, dan roadmap.
+- [DESIGN.md](docs/DESIGN.md): panduan tampilan dan pengalaman pengguna.
+- [AGENTS.md](AGENTS.md): panduan kontribusi dan alur kerja pengembangan.
