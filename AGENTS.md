@@ -102,7 +102,9 @@ Run Android commands from the Android Gradle root (often `android/`, but inspect
 ./gradlew spotlessApply             # only after configured
 ```
 
-Run Flask commands from `backend/` after the project has been scaffolded:
+Run Flask commands from `backend/`. The foundation includes app factory, health endpoint,
+pytest and Ruff; database migrations are not configured yet.
+Activate a Python 3.12+ virtual environment before using these commands:
 
 ```bash
 python -m pip install -e '.[dev]'
@@ -112,6 +114,10 @@ python -m pytest -q
 python -m ruff check .
 python -m ruff format --check .
 ```
+
+Alternatively, use the committed uv lockfile: `uv sync --extra dev --locked`, then
+`uv run --locked pytest -q`, `uv run --locked ruff check .`, and
+`uv run --locked ruff format --check .`. See `backend/README.md` for setup and WSGI commands.
 
 Commands are **expected targets**, not evidence of existing configuration. If a command differs from the created project, update `AGENTS.md` accordingly. Never claim a test, migration or build passed without actually running it.
 
@@ -274,7 +280,7 @@ test(backend): reject cross-account kit access
 docs: align PLAN and AGENTS with Flask roadmap
 ```
 
-- `main` must remain buildable. Create a new, short-lived branch before starting each feature or any major change; never implement major changes directly on `main`. Use `codex/feat/<topic>` for features and `codex/fix/<topic>` for fixes.
+- `main` must remain buildable. Create a new, short-lived branch before starting each feature or any major change; never implement major changes directly on `main`. Use `feat/<feature>` for features and `fix/<topic>` for fixes, without a `codex/` prefix.
 - Minor changes, such as small documentation updates or localized fixes without architectural, schema, or broad behavior changes, may be made directly on `main`. Every new feature still requires its own branch regardless of size. If scope grows into a major change, create a branch before continuing.
 - No unrelated refactors, surprise deployments, destructive operations, secret commits, release keystores, or `local.properties`.
 - Do not bypass failing checks using unjustified suppression or disabled tests.

@@ -461,13 +461,21 @@ Estimates are **rough solo-developer planning effort**, not promises. Implement 
 ### Milestone B — Flask Cloud Beta (approximately 6–9 additional part-time weeks)
 
 #### Phase 6 — Flask backend foundation
-- [ ] Create `backend/` Python project with app factory, Blueprints, env-based config, Ruff and pytest.
+- [x] Create `backend/` Python project with app factory, Blueprints, env-based config, Ruff and pytest.
 - [ ] Set up PostgreSQL, SQLAlchemy, Alembic/Flask-Migrate and reproducible migrations.
 - [ ] Set up Docker dev environment, DB health check and production WSGI entrypoint.
 - [ ] Define OpenAPI schemas, canonical UUIDs, ownership, revisioning and error format.
 - [ ] Add API CI using an ephemeral PostgreSQL test DB.
 
 **Exit:** Backend boots reproducibly; `/api/v1/health` and migration/test checks pass.
+
+Foundation initialized by explicit request ahead of the Android milestones:
+`backend/` provides `/api/v1/health`, JSON HTTP errors, request IDs, a WSGI entrypoint,
+and tests. `docs/openapi.yaml` covers only the implemented health/error contract.
+PostgreSQL, migrations, Docker, full resource schemas, and API CI remain pending;
+the Phase 6 exit criteria have not been met. Android remains local-only.
+Verification: Python 3.12, 8 pytest tests passed; Ruff lint/format checks passed;
+Flask CLI route discovery and the WSGI health smoke check passed.
 
 #### Phase 7 — Auth and cloud data APIs
 - [ ] Implement register/login/refresh/logout/me and secure password/token handling.
